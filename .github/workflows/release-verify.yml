@@ -7,13 +7,23 @@ on:
       - release/*/*
       - main
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   try:
-    uses: kungfu-trader/workflows/.github/workflows/.release-verify.yml@v1
+    uses: kungfu-systems/workflows/.github/workflows/.release-verify.yml@dev/v2/v2.0
     with:
       enable-linux: true
       enable-macos: false
       enable-windows: false
+      build-container-enabled: false
+      setup-python-enabled: false
+      publish-versioning: false
+      publish-aws-ci: false
+      publish-aws-user: false
+      action-bump-version-ref: dev/v4/v4.0
     secrets:
       AWS_CI_ACCESS_KEY_ID: ${{ secrets.AWS_CI_ACCESS_KEY_ID }}
       AWS_CI_SECRET_ACCESS_KEY: ${{ secrets.AWS_CI_SECRET_ACCESS_KEY }}
@@ -23,7 +33,7 @@ jobs:
   
   verify:
     needs: try
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
       - name: report
         run: echo verified
