@@ -1,6 +1,6 @@
-name: "Pull request sync"
+name: "Retired Pull Request Airtable Sync"
 author: "songzhouran"
-description: "Pull request sync"
+description: "Retired Airtable pull request synchronization action kept for audit history only"
 inputs:
   token:
     description: "Github token. E.g. secrets.GITHUB_TOKEN"
@@ -18,5 +18,5 @@ inputs:
   base:
     description: "store which base will be used in airtable"
 runs:
-  using: "node16"
+  using: "node24"
   main: "dist/index.js"
